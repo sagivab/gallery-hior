@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import React from "react";
+import React, { ReactNode } from "react";
 
 const links = [
   { src: "/", text: "incio" },
@@ -16,7 +16,11 @@ const links = [
   { src: "/contacto", text: "contacto" },
 ];
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children?: ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
     <div className="">
       <Navbar links={links} />

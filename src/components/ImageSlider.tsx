@@ -1,7 +1,13 @@
 import { useState } from "react";
+import { Slide } from "../../types/slide";
 
-const ImageSlider = ({ slides }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+interface ImageSliderProps {
+  readonly slides: Slide[];
+  aaa_bb?: string;
+}
+
+const ImageSlider = ({ slides }: ImageSliderProps): JSX.Element => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
@@ -12,12 +18,12 @@ const ImageSlider = ({ slides }) => {
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
-  const jumpToSlide = (slideIndex) => {
+  const jumpToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   };
 
   return (
-    <div className="relative h-3/4 flex flex-col justify-center items-center">
+    <div className="relative h-full flex flex-col justify-center items-center">
       <div className="group absolute w-full h-2/5">
         <div
           onClick={prevSlide}
@@ -39,7 +45,7 @@ const ImageSlider = ({ slides }) => {
           <div
             // style={dotStyle}
             className="text-xl cursor-pointer mx-1"
-            key={slideIndex}
+            key={slide.url}
             onClick={() => jumpToSlide(slideIndex)}
           >
             {slideIndex == currentIndex ? "●" : "○"}

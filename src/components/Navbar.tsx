@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { useState } from "react";
 import CloseIcon from "./Icons/Close";
 import HamburgetIcon from "./Icons/Hamburger";
 
@@ -11,9 +10,9 @@ interface NavbarProps {
   }[];
 }
 
-const Navbar: FunctionComponent<NavbarProps> = (props: NavbarProps) => {
+const Navbar = ({ links }: NavbarProps) => {
   const [isMobileNavbarOpen, setIsMobileNavbarOpen] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<string>(props.links[0].text);
+  const [currentPage, setCurrentPage] = useState<string>(links[0].text);
   const handleDropdownClicked = (textLinkClicked: string) => {
     setIsMobileNavbarOpen((prev) => !prev);
     setCurrentPage(textLinkClicked);
@@ -41,7 +40,7 @@ const Navbar: FunctionComponent<NavbarProps> = (props: NavbarProps) => {
   };
 
   const setColorTextBasedOnActivePage = (pageName: string) => {
-    //not active by default
+    //inactive by default
     let textColor = "text-secondary-dark";
 
     if (pageName == currentPage) {
@@ -54,7 +53,7 @@ const Navbar: FunctionComponent<NavbarProps> = (props: NavbarProps) => {
   return (
     <nav className="sticky z-10 top-0">
       <div className="hidden w-full bg-primary-dark md:flex flex-wrap justify-center items-center">
-        {props.links.map((link) => (
+        {links.map((link) => (
           <Link href={link.src} key={link.text}>
             <a
               className={setColorTextBasedOnActivePage(link.text)}
@@ -72,7 +71,7 @@ const Navbar: FunctionComponent<NavbarProps> = (props: NavbarProps) => {
         {setIconBasedOnState()}
       </div>
       <div className={`${classNameBasedOnState()} flex-col bg-primary-dark`}>
-        {props.links.map((link) => (
+        {links.map((link) => (
           <Link href={link.src} key={link.text}>
             <a
               onClick={() => handleDropdownClicked(link.text)}
