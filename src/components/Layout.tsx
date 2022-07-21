@@ -22,9 +22,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
-    <div className="">
+    <div>
       <Navbar links={links} />
-      <div className="mt-20">{children}</div>
+      <div>{children}</div>
       <Footer />
     </div>
   );

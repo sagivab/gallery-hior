@@ -3,7 +3,6 @@ import { Slide } from "../../types/slide";
 
 interface ImageSliderProps {
   readonly slides: Slide[];
-  aaa_bb?: string;
 }
 
 const ImageSlider = ({ slides }: ImageSliderProps): JSX.Element => {
@@ -43,7 +42,6 @@ const ImageSlider = ({ slides }: ImageSliderProps): JSX.Element => {
       <div className="flex justify-center">
         {slides.map((slide, slideIndex) => (
           <div
-            // style={dotStyle}
             className="text-xl cursor-pointer mx-1"
             key={slide.url}
             onClick={() => jumpToSlide(slideIndex)}

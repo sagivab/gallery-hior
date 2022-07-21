@@ -45,7 +45,7 @@ const imagesInput2: Slide[] = [
   },
 ];
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <div>
       <Head>
@@ -58,25 +58,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="grid grid-cols-1 md:grid-cols-2 w-4/5 mx-auto">
-        <div className="flex flex-col justify-center items-center col-span-2 h-screen">
+      <main className="grid grid-cols-1 md:grid-cols-2 w-4/5 mx-auto ">
+        <div className="flex flex-col justify-center items-center col-span-2 h-screen bg-white">
           <Image
-            className="animate-fade-in"
-            width="380"
-            height="255"
+            className="animate-fade-in aspect-auto w-72 h-48"
+            width="288"
+            height="193"
             src="https://cf-simple-s3-origin-gallery-hior-021672050205.s3.us-east-2.amazonaws.com/slidesImages/logo.png"
             alt="logo"
           />
         </div>
-        <div className="w-3/5 h-96 col-span-2 mx-auto mb-10">
+        <div className="w-full md:w-3/5 h-96 col-span-2 mx-auto mb-10">
           <ImageSlider slides={imagesInput} />
         </div>
-        <div className="w-4/5 min-w-700 col-span-2 mx-auto mb-10">
-          <h2 className="text-3xl">¿Quiénes somos?</h2>
-          <div className="flex">
+        <div className="w-4/5 md:min-w-500 col-span-2 mx-auto mb-10">
+          <h2 className="text-3xl mb-4">¿Quiénes somos?</h2>
+          <div className="md:flex">
             <Image
-              width="380"
-              height="255"
+              className="aspect-auto w-72 h-48"
+              width="288"
+              height="193"
               src="https://cf-simple-s3-origin-gallery-hior-021672050205.s3.us-east-2.amazonaws.com/slidesImages/logo.png"
               alt="logo"
             />
@@ -90,32 +91,35 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <h2 className="text-3xl col-span-2 mb-2">Servicios</h2>
-        <div className="px-6 col-span-2 md:col-span-1 md:col-start-2">
-          <ul className="list-disc">
-            <li>Asesorías</li>
-            <li>Valuación de obras</li>
-            <li>Arte Corporativo</li>
-            <li>Comisión de retratos</li>
-            <li>Grabados institucionales</li>
-            <li>Paisajismo escultórico</li>
-            <li>Representación de Artistas</li>
-            <li>Entre muchas opciones más</li>
-          </ul>
+        <div className="grid md:grid-cols-2 col-span-2 mb-10">
+          <h2 className="w-5/6 mx-auto text-3xl col-span-2 mb-4">Servicios</h2>
+          <div className="px-6 col-span-2 md:col-span-1 md:col-start-2 mx-auto">
+            <ul className="list-disc ">
+              <li>Asesorías</li>
+              <li>Valuación de obras</li>
+              <li>Arte Corporativo</li>
+              <li>Comisión de retratos</li>
+              <li>Grabados institucionales</li>
+              <li>Paisajismo escultórico</li>
+              <li>Representación de Artistas</li>
+              <li>Entre muchas opciones más</li>
+            </ul>
+          </div>
+          <div className="mx-auto py-6 md:py-0 md:col-span-1 max-w-xl md:row-start-2">
+            <p>
+              Galerie Hior cuenta con un servicio especializado de búsqueda de
+              arte el cual se centra en los gustos o las necesidades estéticas
+              de nuestra clientela o en caracteres de compra de obras como
+              inversión. Además poseemos servicios especializados tanto para
+              colecciones privadas o públicas y para el sector comercial e
+              institucional. Sea cual sea su caso, al contratarnos su
+              satisfacción queda asegurada en nuestras manos. Para mayor
+              información escribanos a:{" "}
+              <span className="font-extrabold">info@galeriehior.com</span>
+            </p>
+          </div>
         </div>
-        <div className="col-span-2 md:col-span-1 p-4 max-w-xl md:row-start-5 mb-10">
-          <p>
-            Galerie Hior cuenta con un servicio especializado de búsqueda de
-            arte el cual se centra en los gustos o las necesidades estéticas de
-            nuestra clientela o en caracteres de compra de obras como inversión.
-            Además poseemos servicios especializados tanto para colecciones
-            privadas o públicas y para el sector comercial e institucional. Sea
-            cual sea su caso, al contratarnos su satisfacción queda asegurada en
-            nuestras manos. Para mayor información escribanos a:{" "}
-            <span className="font-extrabold">info@galeriehior.com</span>
-          </p>
-        </div>
-        <div className="w-3/5 h-96 col-span-2 mx-auto mb-10">
+        <div className="w-full md:w-3/5 h-96 col-span-2 mx-auto mb-10">
           <ImageSlider slides={imagesInput2} />
         </div>
         <p className="col-span-2 w-4/5 text-center mx-auto p-0.5">

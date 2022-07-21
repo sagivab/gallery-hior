@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 
+#error
+/yarn-error.log
 # next.js
 /.next/
 /out/
