@@ -18,12 +18,15 @@ const Navbar = ({ links }: NavbarProps) => {
     setCurrentPage(textLinkClicked);
   };
 
-  const classNameBasedOnState = () => {
-    if (!isMobileNavbarOpen) {
-      return "hidden";
-    } else {
-      return "flex";
+  const setColorTextBasedOnActivePage = (pageName: string) => {
+    //inactive by default
+    let textColor = "text-secondary-dark";
+
+    if (pageName == currentPage) {
+      textColor = "text-primary-light";
     }
+
+    return `p-4 uppercase ${textColor} hover:text-primary-light tracking-widest`;
   };
 
   const setIconBasedOnState = () => {
@@ -39,51 +42,37 @@ const Navbar = ({ links }: NavbarProps) => {
     }
   };
 
-  const setColorTextBasedOnActivePage = (pageName: string) => {
-    //inactive by default
-    let textColor = "text-secondary-dark";
-
-    if (pageName == currentPage) {
-      textColor = "text-primary-light";
-    }
-
-    return `p-4 uppercase ${textColor} hover:text-primary-light tracking-widest`;
-  };
-
   return (
-    <nav className="sticky z-10 top-0">
-      <div className="hidden w-full bg-primary-dark md:flex flex-wrap justify-center items-center">
-        {links.map((link) => (
-          <Link href={link.src} key={link.text}>
-            <a
-              className={setColorTextBasedOnActivePage(link.text)}
-              onClick={() => setCurrentPage(link.text)}
-            >
-              {link.text}
-            </a>
-          </Link>
-        ))}
-      </div>
-      <div
-        className="flex justify-between items-center w-full bg-primary-dark border-md h-30 md:hidden"
-        onClick={() => handleDropdownClicked(currentPage)}
+    <nav className="sticky z-10 top-0 flex center  justify-center h-16 bg-primary-dark text-xl">
+      <button
+        onClick={() => setIsMobileNavbarOpen(!isMobileNavbarOpen)}
+        className="flex justify-center items-center md:hidden border-0 h-11 w-11 rounded-full bg-primary-dark  absolute top-1/2 left-7 -translate-y-1/2 hover:bg-secondary-dark"
       >
         {setIconBasedOnState()}
-      </div>
-      <div className={`${classNameBasedOnState()} flex-col bg-primary-dark`}>
-        {links.map((link) => (
-          <Link href={link.src} key={link.text}>
-            <a
-              onClick={() => handleDropdownClicked(link.text)}
-              className={`${setColorTextBasedOnActivePage(
-                link.text
-              )} border-b-2`}
+      </button>
+      <ul
+        className={`${
+          isMobileNavbarOpen ? "flex" : "hidden"
+        } flex-col md:flex md:flex-row justify-center items-center w-full absolute top-16 left-0 md:static gap-x-3 tracking-widest uppercase bg-primary-dark`}
+      >
+        {links.map((link) => {
+          return (
+            <li
+              key={link.text}
+              className={setColorTextBasedOnActivePage(link.text)}
             >
-              {link.text}
-            </a>
-          </Link>
-        ))}
-      </div>
+              <Link href={link.src}>
+                <a
+                  className="block w-full"
+                  onClick={() => handleDropdownClicked(link.text)}
+                >
+                  {link.text}
+                </a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 };
